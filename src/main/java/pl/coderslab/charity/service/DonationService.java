@@ -19,24 +19,13 @@ public class DonationService {
         return dr.findAll();
     }
 
-    //liczenie powinno być tutaj czy w kontrolerze?
     public Integer getQuantityOfBags(){
-        List<Donation> donations = getAllDonations();
-        Integer sum = 0;
-        for (Donation d : donations){
-            sum += d.getQuantity();
-        }
-        return sum;
+        return dr.countQuantity();
     }
 
-
-    //która funkcja jest lepsza?
-    public Integer getQuantityOfDonationsFromQuery(){
+    public Integer getQuantityOfDonations(){
         return dr.countDonationsById();
     }
 
-    public Integer getQuantityOfDonationsFromList(){
-        return getAllDonations().size();
-    }
 
 }

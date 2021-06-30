@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -24,13 +24,14 @@ public class Donation {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer quantity;
-    @OneToMany
+    @ManyToMany
     private List<Category> categories;
     @ManyToOne
     private Institution institution;
     private String street;
     private String city;
     private String zipCode;
+    private String phoneNumber;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;

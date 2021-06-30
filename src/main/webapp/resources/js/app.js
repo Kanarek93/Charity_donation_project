@@ -164,6 +164,14 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
+      const summary = document.querySelectorAll(".summary li")
+      const zipcode = document.querySelector("#zipCode")
+
+      console.log("cokolwiek")
+      console.log(summary);
+        //console.log(zipcode.value);
+        //summary[3].innerText = "Daria";
+
     }
 
   }
@@ -171,4 +179,5 @@ document.addEventListener("DOMContentLoaded", function() {
   if (form !== null) {
     new FormSteps(form);
   }
+
 });
