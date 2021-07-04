@@ -58,7 +58,7 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form:form action="" method="post" modelAttribute="donation">
+        <form:form action="/potwierdzenie-formularza" method="post" modelAttribute="donation">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
@@ -70,11 +70,12 @@
                         <input
                                 type="checkbox"
                                 name="categories"
-                                model.bind="category"
-                                checked.bind="categories"
+                                title="${cat.name}"
+                                value="${cat.id}"
+                                id="categories";
                         />
                         <span class="checkbox"></span>
-                        <span class="description">${cat.getName()}</span>
+                        <span class="description">${cat.name}</span>
                     </label>
                 </div>
                 </c:forEach>
@@ -96,7 +97,7 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <form:input path="quantity" type="number" name="bags" step="1" min="1" />
+                        <form:input path="quantity" type="number" name="bags" step="1" min="1" id="bags"/>
                     </label>
                 </div>
 
@@ -117,12 +118,12 @@
                         <div class="form-group form-group--checkbox">
                             <c:forEach items="${institutions}" var="inst">
                                 <label>
-                                    <input type="radio" name="organization" model.bind="institution" checked.bind="instut" />
+                                    <input type="radio" name="institution" value="${inst.id}" id="fund" />
                                     <span class="checkbox radio"></span>
                                     <span class="description">
-                                        <div class="title">${inst.getName()}</div>
+                                        <div class="title">${inst.name}</div>
                                         <div class="subtitle">
-                                            ${inst.getDescription()}
+                                            ${inst.description}
                                         </div>
                                     </span>
                                 </label>
@@ -145,7 +146,7 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica <form:input path="street" type="text" name="address" /> </label>
+                            <label> Ulica <form:input path="street" type="text" name="street" id="street" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -154,13 +155,13 @@
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <form:input path="zipCode" type="text" name="postcode" id="zipCode"/>
+                                Kod pocztowy <form:input path="zipCode" type="text" name="zipCode" id="zipCode"/>
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <form:input path="phoneNumber" type="phone" name="phone" />
+                                Numer telefonu <input type="phone" name="phone" id="phone" />
                             </label>
                         </div>
                     </div>
@@ -168,17 +169,17 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <form:input path="pickUpDate" type="date" name="data" /> </label>
+                            <label> Data <form:input path="pickUpDate" type="date" name="pickUpDate" id="pickUp" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <form:input path="pickUpTime" type="time" name="time" /> </label>
+                            <label> Godzina <form:input path="pickUpTime" type="time" name="pickUpTime" id="time" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <form:textarea path="pickUpComment" name="more_info" rows="5"></form:textarea>
+                                <form:textarea path="pickUpComment" name="pickUpComment" rows="5" id="comment"></form:textarea>
                             </label>
                         </div>
                     </div>
@@ -200,7 +201,7 @@
                             <li>
                                 <span class="icon icon-bag"></span>
                                 <span class="summary--text"
-                                > 4 worki ubrań w dobrym stanie dla dzieci</span
+                                > </span
                                 >
                             </li>
 

@@ -31,18 +31,30 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/form")
+    @GetMapping("/formularz")
+    public String newFormAction(Model model){
+        model.addAttribute("donation", new Donation());
+        return "form";
+    }
+
+    @PostMapping("/potwierdzenie-formularza")
+    public String formConfirmation(Donation donation){
+        ds.saveDonation(donation);
+        return  "form-confirmation";
+    }
+
+    /*@GetMapping("/form")
     public String formAction(Model model){
         model.addAttribute("donation", new Donation());
         return "form";
     }
 
     @PostMapping("/form")
-    @ResponseBody
     public String formPostAction(Donation donation){
-        return donation.toString();
+        ds.saveDonation(donation);
+        return "form-confirmation";
     }
-
+*/
     @ModelAttribute(name = "institutions")
     public List<Institution> institutionList(){
         return is.getAllInstitutions();

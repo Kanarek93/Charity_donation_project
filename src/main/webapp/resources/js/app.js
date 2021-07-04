@@ -164,13 +164,31 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
-      const summary = document.querySelectorAll(".summary li")
-      const zipcode = document.querySelector("#zipCode")
 
-      console.log("cokolwiek")
-      console.log(summary);
-        //console.log(zipcode.value);
-        //summary[3].innerText = "Daria";
+        const summary = document.querySelectorAll(".summary li");
+        const summarySpans = summary[0].children;
+
+        const zipcode = document.querySelector("#zipCode");
+        const bagsQ = document.querySelector("#bags");
+        const categories = document.querySelector("#categories");
+        const institut = document.querySelector("#fund");
+        const street = document.querySelector("#street");
+        const city = document.querySelector("#city");
+        const phone = document.querySelector("#phone")
+        const pick = document.querySelector("#pickUp");
+        const time = document.querySelector("#time");
+        const com = document.querySelector("#comment");
+
+        summary[0].lastElementChild.innerText = bagsQ.value + " worki w których są " + categories.value;
+        summary[1].lastElementChild.innerText = "Dla " +institut.value;
+        summary[2].innerText = street.value;
+        summary[3].innerText = zipcode.value;
+        summary[4].innerText = city.value;
+        summary[5].innerText = phone.value;
+        summary[6].innerText = pick.value;
+        summary[7].innerText = time.value;
+        summary[8].innerText = com.value;
+
 
     }
 

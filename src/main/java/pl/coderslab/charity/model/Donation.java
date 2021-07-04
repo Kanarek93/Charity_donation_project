@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@ToString
 public class Donation {
 
     @Id
@@ -31,7 +33,6 @@ public class Donation {
     private String street;
     private String city;
     private String zipCode;
-    private String phoneNumber;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;

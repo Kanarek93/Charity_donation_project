@@ -27,5 +27,9 @@ public class DonationService {
         return dr.countDonationsById();
     }
 
+    public Donation saveDonation (Donation donation){
+        return dr.save(donation);
+    }
+
 
 }
