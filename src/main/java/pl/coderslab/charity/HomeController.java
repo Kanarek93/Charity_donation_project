@@ -55,17 +55,17 @@ public class HomeController {
         return "form-confirmation";
     }
 */
-    @ModelAttribute(name = "institutions")
+    @ModelAttribute(name = "institutionsAll")
     public List<Institution> institutionList(){
         return is.getAllInstitutions();
     }
 
-    @ModelAttribute(name = "categories")
+    @ModelAttribute(name = "categoriesAll")
     public List<Category> categoryList(){return cs.getAllCategories();}
 
-    @ModelAttribute(name = "donation")
+    @ModelAttribute(name = "donationQuantity")
     public Integer donationsQuantity(){return ds.getQuantityOfDonations();}
 
-    @ModelAttribute(name = "bag")
+    @ModelAttribute(name = "bagQuantity")
     public Integer bagsQuantity(){return ds.getQuantityOfBags();}
 }

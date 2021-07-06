@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+
 <%@include file="header.jsp"%>
 
 
@@ -63,8 +63,8 @@
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
                 <c:choose>
-                    <c:when test="${not empty categories}">
-                <c:forEach items="${categories}" var="cat">
+                    <c:when test="${not empty categoriesAll}">
+                <c:forEach items="${categoriesAll}" var="cat">
                 <div class="form-group form-group--checkbox">
                     <label>
                         <input
@@ -72,7 +72,7 @@
                                 name="categories"
                                 title="${cat.name}"
                                 value="${cat.id}"
-                                id="categories";
+                                id="categories"
                         />
                         <span class="checkbox"></span>
                         <span class="description">${cat.name}</span>
@@ -81,7 +81,7 @@
                 </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <span class="description">Nie ma żadnych kategorii do wybrania</span>
+                        Nie ma żadnych kategorii do wybrania
                     </c:otherwise>
                 </c:choose>
 
@@ -114,11 +114,17 @@
                 <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
                 <c:choose>
-                    <c:when test="${not empty institutions}">
+                    <c:when test="${not empty institutionsAll}">
                         <div class="form-group form-group--checkbox">
-                            <c:forEach items="${institutions}" var="inst">
+                            <c:forEach items="${institutionsAll}" var="inst">
                                 <label>
-                                    <input type="radio" name="institution" value="${inst.id}" id="fund" />
+                                    <input
+                                            type="radio"
+                                            name="institution"
+                                            value="${inst.id}"
+                                            id="fund"
+                                            title="${inst.name}"
+                                    />
                                     <span class="checkbox radio"></span>
                                     <span class="description">
                                         <div class="title">${inst.name}</div>
@@ -130,6 +136,9 @@
                             </c:forEach>
                         </div>
                     </c:when>
+                    <c:otherwise>
+                        Nie ma żadnych fundacji do wybrania
+                    </c:otherwise>
                 </c:choose>
 
                 <div class="form-group form-group--buttons">

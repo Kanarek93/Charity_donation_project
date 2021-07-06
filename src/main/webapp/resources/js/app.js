@@ -166,12 +166,11 @@ document.addEventListener("DOMContentLoaded", function() {
       // TODO: get data from inputs and show them in summary
 
         const summary = document.querySelectorAll(".summary li");
-        const summarySpans = summary[0].children;
 
         const zipcode = document.querySelector("#zipCode");
         const bagsQ = document.querySelector("#bags");
-        const categories = document.querySelector("#categories");
-        const institut = document.querySelector("#fund");
+        const categories = document.querySelectorAll("#categories:checked");
+        let institut = document.querySelector("#fund:checked");
         const street = document.querySelector("#street");
         const city = document.querySelector("#city");
         const phone = document.querySelector("#phone")
@@ -179,8 +178,34 @@ document.addEventListener("DOMContentLoaded", function() {
         const time = document.querySelector("#time");
         const com = document.querySelector("#comment");
 
-        summary[0].lastElementChild.innerText = bagsQ.value + " worki w których są " + categories.value;
-        summary[1].lastElementChild.innerText = "Dla " +institut.value;
+        let firstLiText;
+        let firstLiTextCategories ="";
+
+        if (bagsQ.value <= 0) {
+          firstLiText = "Coś poszło nie tak, nie chcesz oddać żadnych darów";
+        }
+        else if (bagsQ.value === 1) {
+          firstLiText = "Oddajesz 1 worek w którym są";
+        }
+        else if (bagsQ.value > 1 && bagsQ.value < 5) {
+          firstLiText = "Oddajesz " + bagsQ.value + " worki, w których są";
+        }
+        else {
+          firstLiText = "Oddajesz " + bagsQ.value + " worków, w których są";
+        }
+
+        if(categories.length > 0){
+          categories.forEach(el => firstLiTextCategories = firstLiTextCategories + " " + el.title + ",");
+          let newTextCategories = firstLiTextCategories.slice(0, -1);
+          firstLiText = firstLiText + newTextCategories + ".";
+        }
+        else {
+          firstLiText = "Nie oddawaj pustych worków, zaznacz co jest w środku!"
+        }
+
+
+        summary[0].lastElementChild.innerText = firstLiText;
+        summary[1].lastElementChild.innerText = "Otrzyma je " + institut.title;
         summary[2].innerText = street.value;
         summary[3].innerText = zipcode.value;
         summary[4].innerText = city.value;
